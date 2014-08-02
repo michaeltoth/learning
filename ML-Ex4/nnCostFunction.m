@@ -24,6 +24,7 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 
 % Setup some useful variables
 m = size(X, 1);
+n = size(y, 1);
          
 % You need to return the following variables correctly 
 J = 0;
@@ -63,8 +64,33 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+% Part 1: Feedforward
 
+% Compute Cost:
+% Add row of ones to X
+X = [ones(m, 1) X];
+% Compute z2 (hidden layer), compute its sigmoid as a2, and add a row of ones
+z2 = X * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(m, 1) a2];
+% Compute z3 (output layer) and compute it's sigmoid
+z3 = a2 * Theta2';
+h = sigmoid(z3);
 
+% Vectorize y:
+yvec = zeros(n,num_labels);
+for i = 1:n
+	yvec(i,y(i)) = 1;
+endfor
+
+% Calculate cost:
+costvec = zeros(m,1);
+
+% Loop over training set examples to compute a cost vector, then sum
+for i = 1:m
+	costvec(i) = -yvec(i,:)*log(h(i,:))' - (1-yvec(i,:))*log(1-h(i,:))';
+endfor
+J = sum(costvec) / m;
 
 
 
