@@ -69,13 +69,15 @@ Theta2_grad = zeros(size(Theta2));
 % Compute Cost:
 % Add row of ones to X
 X = [ones(m, 1) X];
+a1 = X;
 % Compute z2 (hidden layer), compute its sigmoid as a2, and add a row of ones
-z2 = X * Theta1';
+z2 = a1 * Theta1';
 a2 = sigmoid(z2);
 a2 = [ones(m, 1) a2];
 % Compute z3 (output layer) and compute it's sigmoid
 z3 = a2 * Theta2';
-h = sigmoid(z3);
+a3 = sigmoid(z3);
+h = a3;
 
 % Vectorize y:
 yvec = zeros(n,num_labels);
@@ -97,12 +99,14 @@ J = sum(costvec) / m;
 regcost1 = 0;
 regcost2 = 0;
 
+% Compute first regularized cost using Theta1 parameters
 for j = 1:hidden_layer_size
 	for k = 2:(input_layer_size + 1) % start from 2 because we don't regularize bias term
 		regcost1 = regcost1 + Theta1(j,k)^2;
 	endfor
 endfor
 
+% Compute second regularized cost using Theta2 parameters
 for j = 1:num_labels
 	for k = 2:(hidden_layer_size + 1) % start from 2 because we don't regularize bias term
 		regcost2 = regcost2 + Theta2(j,k)^2;
@@ -115,12 +119,33 @@ J = J + regcost;
 
 
 
+% Part 2: Backpropagation
+capital_delta1 = zeros(size(Theta1));
+capital_delta2 = zeros(size(Theta2));
 
+% Loop over training examples
+for t = 1:m
+	% Feedforward computations for single training example
+	a_1 = X(t,:)'; % Bias unit already added above
+	z_2 = Theta1 * a_1;
+	a_2 = sigmoid(z_2);
+	a_2 = [1; a_2]; % Adding bias unit
+	z_3 = Theta2 * a_2;
+	a_3 = sigmoid(z_3);
+	
+	% Compute delta 3 for outputs using vectorized y
+	delta_3 = a_3 - yvec(t,:)';
+	
+	% Use backpropagation to compute delta 2
+	delta_2 = (Theta2' * delta_3)(2:end) .* sigmoidGradient(z_2); % Removing first element associated with bias
+	
+	% Accumulate gradients by adding to capital_delta for each training example
+	capital_delta1 = capital_delta1 + delta_2 * a_1';
+	capital_delta2 = capital_delta2 + delta_3 * a_2';
+endfor
 
-
-
-
-
+Theta1_grad = (1 / m) * capital_delta1;
+Theta2_grad = (1 / m) * capital_delta2;
 
 
 
