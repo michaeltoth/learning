@@ -92,7 +92,25 @@ for i = 1:m
 endfor
 J = sum(costvec) / m;
 
+% Regularized cost function:
 
+regcost1 = 0;
+regcost2 = 0;
+
+for j = 1:hidden_layer_size
+	for k = 2:(input_layer_size + 1) % start from 2 because we don't regularize bias term
+		regcost1 = regcost1 + Theta1(j,k)^2;
+	endfor
+endfor
+
+for j = 1:num_labels
+	for k = 2:(hidden_layer_size + 1) % start from 2 because we don't regularize bias term
+		regcost2 = regcost2 + Theta2(j,k)^2;
+	endfor
+endfor
+
+regcost = (lambda/(2*m)) * (regcost1 + regcost2);
+J = J + regcost;
 
 
 
