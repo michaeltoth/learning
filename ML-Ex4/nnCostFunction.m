@@ -97,10 +97,11 @@ delta_3 = a_3 - y_matrix;
 % Use backpropagation to compute delta 2, removing first element associted with bias
 delta_2 = (delta_3 * Theta2)(:,2:end) .* sigmoidGradient(z_2);
 
-% Comput gradients
-Theta1_grad = (1 / m) * delta_2' * a_1;
-Theta2_grad = (1 / m) * delta_3' * a_2;
-	
+% Compute gradients
+Theta1_temp = Theta1; Theta1_temp(:,1) = 0;
+Theta2_temp = Theta2; Theta2_temp(:,1) = 0;
+Theta1_grad = (1 / m) * (delta_2' * a_1 + lambda * Theta1_temp);
+Theta2_grad = (1 / m) * (delta_3' * a_2 + lambda * Theta2_temp);
 	
 % -------------------------------------------------------------
 
