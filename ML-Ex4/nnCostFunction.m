@@ -76,50 +76,23 @@ z_3 = a_2 * Theta2';
 a_3 = sigmoid(z_3);
 h = a_3;
 
-% Vectorize y:
-yvec = zeros(n,num_labels);
-for i = 1:n
-	yvec(i,y(i)) = 1;
-endfor
+% Vectorize y by mapping y elements to values of the identity matrix
+y_matrix = eye(num_labels)(y,:);
 
-% Calculate cost:
-costvec = zeros(m,1);
+% Determine cost using element-wise multiplication and sum
+cost_matrix = -y_matrix .* log(h) - ((1 - y_matrix) .* log(1 - h));
+J = sum(sum(cost_matrix)) / m;
 
-% Loop over training set examples to compute a cost vector, then sum
-for i = 1:m
-	costvec(i) = -yvec(i,:)*log(h(i,:))' - (1-yvec(i,:))*log(1-h(i,:))';
-endfor
-J = sum(costvec) / m;
-
-% Regularized cost function:
-
-regcost1 = 0;
-regcost2 = 0;
-
-% Compute first regularized cost using Theta1 parameters
-for j = 1:hidden_layer_size
-	for k = 2:(input_layer_size + 1) % start from 2 because we don't regularize bias term
-		regcost1 = regcost1 + Theta1(j,k)^2;
-	endfor
-endfor
-
-% Compute second regularized cost using Theta2 parameters
-for j = 1:num_labels
-	for k = 2:(hidden_layer_size + 1) % start from 2 because we don't regularize bias term
-		regcost2 = regcost2 + Theta2(j,k)^2;
-	endfor
-endfor
-
-regcost = (lambda/(2*m)) * (regcost1 + regcost2);
-J = J + regcost;
-
-
+% Regularized cost function for both theta parameters, summing from 2:end because we don't regularize the bias unit
+regcost1 = sum(sum(Theta1 .^ 2)(2:end));
+regcost2 = sum(sum(Theta2 .^ 2)(2:end));
+J = J + (lambda/(2*m)) * (regcost1 + regcost2);
 
 
 % Part 2: Backpropagation
 
 % Compute delta 3 for outputs using vectorized y
-delta_3 = a_3 - yvec;
+delta_3 = a_3 - y_matrix;
 
 % Use backpropagation to compute delta 2, removing first element associted with bias
 delta_2 = (delta_3 * Theta2)(:,2:end) .* sigmoidGradient(z_2);
