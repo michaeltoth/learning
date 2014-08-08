@@ -39,14 +39,20 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
-
-
-
-
-
-
-
-
+for i = 1:length(lambda_vec)
+	lambda = lambda_vec(i);
+	
+	% train linear regression with the current lambda
+	[theta] = trainLinearReg(X,y,lambda);
+	
+	% Compute training set error.  Lambda = 0 because errors should not be regularized:
+	[Jtrain, gradtrain] = linearRegCostFunction(X, y, theta, 0);
+	error_train(i) = Jtrain;
+	
+	% Compute validation set error.  Lambda = 0 because errors should not be regularized
+	[Jval, gradval] = linearRegCostFunction(Xval, yval, theta, 0);
+	error_val(i) = Jval;
+end
 
 % =========================================================================
 
