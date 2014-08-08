@@ -16,6 +16,11 @@ function [error_train, error_val] = ...
 
 % Number of training examples
 m = size(X, 1);
+mval = size(Xval, 1);
+
+% Adding a column of ones to the X variables for the theta0 parameter
+X = [ones(m, 1) X];
+Xval = [ones(mval, 1) Xval];
 
 % You need to return these values correctly
 error_train = zeros(m, 1);
@@ -53,7 +58,19 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
-
+% Loop that trains and calculates error for training sets sized 1 to m
+for i = 1:m
+	% Train linear regression using the first i training examples:
+	[theta] = trainLinearReg(X(1:i,:),y(1:i),lambda);
+	
+	% Compute training set error using the first i training examples:
+	[Jtrain, gradtrain] = linearRegCostFunction(X(1:i,:), y(1:i), theta, 0);
+	error_train(i) = Jtrain;
+	
+	% Compute validation set error over the full validation set:
+	[Jval, gradval] = linearRegCostFunction(Xval, yval, theta, 0);
+	error_val(i) = Jval;
+end
 
 
 
