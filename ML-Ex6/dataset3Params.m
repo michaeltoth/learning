@@ -23,7 +23,45 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+%{
+% Initialize the values array to test various C and sigma parameters
+values = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
+% Initialize the error array to use in determining the optimal C and sigma parameters
+error = zeros(size(values,2),size(values,2));
+
+% Initialize optimal_C, optimal_sigma, and lowest_error parameters
+optimal_C = 0;
+optimal_sigma = 0;
+lowest_error = 10000;
+
+% Loop through the values above, train the model on X and y, and compute error on xval and yval
+for i = 1:length(values)
+	C = values(i);
+	
+	for j = 1:length(values)
+		sigma = values(j);
+		model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
+		predictions = svmPredict(model,Xval);
+		error(i, j) = mean(double(predictions ~= yval));
+		% If error is lower than before, reset error and choose new optimal C and sigma:
+		if error(i, j) < lowest_error
+			lowest_error = error(i, j);
+			optimal_C = C;
+			optimal_sigma = sigma;
+		endif
+	endfor
+endfor
+
+C = optimal_C;
+sigma = optimal_sigma;
+		
+% Based on the above:
+
+%}
+
+C = 1
+sigma = 0.1
 
 
 
