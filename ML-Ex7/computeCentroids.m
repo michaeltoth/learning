@@ -26,8 +26,12 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
+for i = 1:K
+	% Find indices to average over using the find function:
+	indices_to_average = find(idx == i);
+	% Average over thd indices of X:
+	centroids(i,:) = mean(X(indices_to_average,:));
+endfor
 
 
 
