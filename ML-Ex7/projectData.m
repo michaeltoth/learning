@@ -18,6 +18,8 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% Project data from X dimensions onto K dimensions using the U eigenvector:
+Z = X * U(:, 1:K);
 
 
 
