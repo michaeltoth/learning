@@ -40,7 +40,12 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+% Summing over all instances where R = 1 (the movie was rated by the user)
+J = (1/2) * sum((X*Theta' - Y)(R(:)) .^ 2);
 
+X_grad = sum((X*Theta' - Y) * Theta
+
+Theta_grad = 
 
 
 
