@@ -40,24 +40,32 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
-% Summing over all instances where R = 1 (the movie was rated by the user)
-J = (1/2) * sum((X*Theta' - Y)(R(:)) .^ 2);
+% Summing over all instances where R = 1 (the movie was rated by the user) with regularization
+J = (1/2) * sum(((X*Theta' - Y) .^2 .*R)(:)) + (lambda/2) * (sum((Theta .^ 2)(:)) + sum((X .^ 2)(:)));
 
-X_grad = sum((X*Theta' - Y) * Theta
+for i = 1:num_movies
+	% idx gives list of users who have reviewed movie i
+	idx = find(R(i, :)==1);
+	
+	% Pull features and ratings for users who reviewed i: 
+	Theta_temp = Theta(idx,:);
+	Y_temp = Y(i,idx);
 
-Theta_grad = 
+	% Compute the gradient over users who reviewed movie i:
+	X_grad(i,:) = (X(i,:) * Theta_temp' - Y_temp) * Theta_temp;
+endfor
 
+for j = 1:num_users
+	% idx gives list of movies reviewed by user j
+	idx = find(R(:,j)==1);
 
-
-
-
-
-
-
-
-
-
-
+	% Pull features and ratings for movies reviewed by user j
+	X_temp = X(idx,:);
+	Y_temp = Y(idx,j);
+	
+	% Compute the gradient over movies reviewed by user j:
+	Theta_grad(j,:) = (Theta(j,:) * X_temp' - Y_temp') * X_temp;
+endfor
 
 
 % =============================================================
