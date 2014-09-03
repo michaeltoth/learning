@@ -51,8 +51,8 @@ for i = 1:num_movies
 	Theta_temp = Theta(idx,:);
 	Y_temp = Y(i,idx);
 
-	% Compute the gradient over users who reviewed movie i:
-	X_grad(i,:) = (X(i,:) * Theta_temp' - Y_temp) * Theta_temp;
+	% Compute the gradient with regularization over users who reviewed movie i:
+	X_grad(i,:) = (X(i,:) * Theta_temp' - Y_temp) * Theta_temp + lambda * X(i,:);
 endfor
 
 for j = 1:num_users
@@ -63,8 +63,8 @@ for j = 1:num_users
 	X_temp = X(idx,:);
 	Y_temp = Y(idx,j);
 	
-	% Compute the gradient over movies reviewed by user j:
-	Theta_grad(j,:) = (Theta(j,:) * X_temp' - Y_temp') * X_temp;
+	% Compute the gradient with regularization over movies reviewed by user j:
+	Theta_grad(j,:) = (Theta(j,:) * X_temp' - Y_temp') * X_temp + lambda * Theta(j,:);
 endfor
 
 
