@@ -16,6 +16,7 @@ public class Percolation {
    }
    
    public Percolation(int N) {               // create N-by-N grid, with all sites blocked (false)
+       if (N <= 0) throw new IllegalArgumentException("Grid size must be > 0");
        op = new boolean[N + 1][N + 1];
        size = N;
        id = new int[N + 1][N + 1];  // This will make it easier to deal with 0-based indexing
