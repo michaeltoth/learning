@@ -13,11 +13,18 @@ complete <- function(directory, id = 1:332) {
     ## where 'id' is the monitor ID number and 'nobs' is the
     ## number of complete cases
     
+    values <- vector(mode = "numeric", length = 0)
+    ids <- vector(mode = "numeric", length = 0)
+    
     for (i in id) {
         fileID <- paste("./", directory, "/", formatC(i, width=3, flag="0"), ".csv", sep="")
         data <- read.csv(fileID)
-        isTrue <- complete.cases(data)
-        print(sum(isTrue))
+        values <- c(values,sum(complete.cases(data)))
+        ids <- c(ids,i)
     }
     
+    x <- data.frame(cbind(ids,values))
+    colnames(x) <- c("id","nobs")
+    x
+
 }
