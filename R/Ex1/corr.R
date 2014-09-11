@@ -9,9 +9,16 @@ corr <- function(directory, threshold = 0) {
     
     ## Return a numeric vector of correlations
     
-    for (i in id) {
-        fileID <- paste("./", directory, "/", formatC(i, width=3, flag="0"), ".csv", sep="")
-        data <- read.csv(fileID)
-        
+    correlations <- vector(mode = "numeric", length = 0)
+    
+    for (i in 1:332) {
+        num_complete <- complete("specdata", i)
+        if (num_complete$nobs > threshold) {
+            fileID <- paste("./", directory, "/", formatC(i, width=3, flag="0"), ".csv", sep="")
+            data <- read.csv(fileID)
+            current_corr <- cor(data$sulfate,data$nitrate,use="complete.obs")
+            correlations <- c(correlations,current_corr)
+        }
     }
+    correlations
 }
