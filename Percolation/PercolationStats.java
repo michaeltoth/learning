@@ -35,7 +35,7 @@ public class PercolationStats {
             }
             
             // Record the fraction of open sites for experiment i
-            siteFraction[i] = (float) count/(N*N);
+            siteFraction[i] = (double) count/(N*N);
         }
     }
     public double mean() {                     // sample mean of percolation threshold
