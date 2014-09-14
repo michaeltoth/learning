@@ -1,7 +1,9 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These functions make use of lexical scoping to store the inverse of a matrix
+## in cache and retrieve it using the defined functions within makeCacheMatrix 
+## which is faster than recomputing each time it is needed
 
-## Write a short comment describing this function
+## Creates a special matrix with functions to set the value of the matrix, get
+## the value of the matrix, set the inverse, and retrieve the inverse
 
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
@@ -16,10 +18,11 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Returns the inverse of the matrix, first checking if a cached inverse is
+## available and if not computing the inverse using the solve function
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+    ## Return a matrix that is the inverse of 'x'
     m <- x$getinverse()
     if(!is.null(m)) {
         message("getting cached data")
