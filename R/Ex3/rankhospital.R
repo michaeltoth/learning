@@ -9,7 +9,6 @@ rankhospital <- function(state, outcome, num = "best") {
     potentialOutcomes <- c("heart attack","heart failure","pneumonia")
     if (!is.element(outcome, potentialOutcomes)) { stop("invalid outcome") }
     if (!is.element(state, data[, 7])) { stop("invalid state") }
-    # If num is larger than number of hospitals in state, return NA or fail
     
     ## Subset the data based on requested state
     dataSubset <- data[(data[,7] == state),]
@@ -21,10 +20,12 @@ rankhospital <- function(state, outcome, num = "best") {
     ## Subset so only hospitals with mortality data are included
     dataSubset <- dataSubset[!is.na(dataSubset[,colIndex]),]
 
-    # Order hospitals by mortality rate then alphabetically
+    ## Order hospitals by mortality rate then alphabetically
     dataSubset <- dataSubset[order(dataSubset[,colIndex],dataSubset[,2]),]
     
     numHospitals <- length(dataSubset[,2])
+    
+    ## Determine the hospital that corresponds to the requested rank
     if (num == "best") { hospital <- dataSubset[1,2] }
     else if (num == "worst") { hospital <- dataSubset[numHospitals,2] }
     else if (num > numHospitals) { hospital <- NA }
