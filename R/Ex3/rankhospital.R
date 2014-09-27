@@ -17,18 +17,18 @@ rankhospital <- function(state, outcome, num = "best") {
     if (outcome == "heart attack") { colIndex <- 11 }
     else if (outcome == "heart failure") { colIndex <- 17 }
     else if (outcome == "pneumonia") { colIndex <- 23 }
+    
+    ## Subset so only hospitals with mortality data are included
+    dataSubset <- dataSubset[!is.na(dataSubset[,colIndex]),]
 
     # Order hospitals by mortality rate then alphabetically
-
-    # Detemine the lowest mortality rate for the given disease
-    lowestRate <- min(dataSubset[,colIndex], na.rm = TRUE)
-
-    ## Return hospital name in that state with lowest 30-day death rate.
-    hospitals <- dataSubset[(dataSubset[,colIndex] == lowestRate),2]
+    dataSubset <- dataSubset[order(dataSubset[,colIndex],dataSubset[,2]),]
     
-    # Remove NA and sort list alphabetically to return only the first hospital
-    hospitals <- hospitals[!is.na(hospitals)]
-    hospitals <- hospitals[order(hospitals)]
-    hospitals
-}
+    numHospitals <- length(dataSubset[,2])
+    if (num == "best") { hospital <- dataSubset[1,2] }
+    else if (num == "worst") { hospital <- dataSubset[numHospitals,2] }
+    else if (num > numHospitals) { hospital <- NA }
+    else { hospital <- dataSubset[num,2] }
+
+    hospital
 }
