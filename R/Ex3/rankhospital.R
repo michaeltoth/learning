@@ -1,10 +1,14 @@
-rankhospital <- function(state, outcome, num = "best") {
+rankhospital <- function(state, outcome, num = "best", contents = NULL) {
     ## Read outcome data and convert specific outcome columns to numeric
-    data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
-    data[, 11] <- as.numeric(data[, 11])
-    data[, 17] <- as.numeric(data[, 17])
-    data[, 23] <- as.numeric(data[, 23])
-
+    if (is.null(contents)) {
+        data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+        data[, 11] <- as.numeric(data[, 11])
+        data[, 17] <- as.numeric(data[, 17])
+        data[, 23] <- as.numeric(data[, 23])
+    } else {
+        data <- contents
+    }
+    
     ## Check that state and outcome are valid
     potentialOutcomes <- c("heart attack","heart failure","pneumonia")
     if (!is.element(outcome, potentialOutcomes)) { stop("invalid outcome") }
