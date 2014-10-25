@@ -1,12 +1,12 @@
 setwd("/home/michael/Documents/Projects/Coursera/Data Science/GettingCleaning/Project")
 
 # Loading in train and test data
-#X_test <- read.table("UCI HAR Dataset/test/X_test.txt")
-#y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
-#subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
-#X_train <- read.table("UCI HAR Dataset/train/X_train.txt")
-#y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
-#subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
+X_test <- read.table("UCI HAR Dataset/test/X_test.txt")
+y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
+subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
+X_train <- read.table("UCI HAR Dataset/train/X_train.txt")
+y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
+subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
 
 # Combining test and training datasets
 X_all <- rbind(X_test, X_train)
@@ -34,5 +34,9 @@ colnames(X_all_labeled)[1] <- "Activity"
 # Merge the activity names from y with the activity labels in X to form data set
 mergedData <- merge(X_all_labeled, activities,by.x="Activity", 
                     by.y="V1",all=TRUE)[,-1]
-
 colnames(mergedData)[67] <- "Activity"
+
+# Determine mean of each feature by activity:
+output <- aggregate(mergedData[,1:66],by=list(mergedData$Activity),mean)
+
+write.table(output, file = "tidy.txt", row.names=FALSE)
