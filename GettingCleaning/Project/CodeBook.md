@@ -1,13 +1,6 @@
-# Getting and Cleaning Data Course Project
-
-The run_analysis.R script reads in 4 files from the UCI HAR Dataset, *X_test.txt*,
-*X_train.txt*,*y_test.txt*, and *y_train.txt*. If the UCI HAR Dataset is 
-downloaded as-is and placed within a subdirectory where the run_analysis.R 
-script is located, you can simply run run_analysis.R to perform all necessary 
-transformations and create the output file *tidy.txt*.  
-
-Additional detail about the transformations that occur as a part of the script
-can be found within the CodeBook.md file.
+We begin with 6 raw raw files from the UCI HAR Dataset, *X_test.txt*, 
+*X_train.txt*, *y_test.txt*, *y_train.txt*, *features.txt*, and 
+*activity_labels.txt*.
 
 After loading in files, we combine both the *X_test.txt* and *X_train.txt* files
 into the *X_all* data frame using the rbind command.  Similarly, we combine the
@@ -18,7 +11,7 @@ HAR Dataset.  We add the features labeels from *features.txt* as headers to the
 *X_all* dataframe using the names command.  
 
 To extract only the features representing the mean and standard deviation of the
-variables, we make note of the fact that these all are formmated similarly, 
+variables, we make note of the fact that these all are formated similarly, 
 either containing the text mean() or std() in the name.  We use regular expression
 matching to extract only these variables, using the grep command.  We then subset
 the *X_all* data frame to only contain these columns, storing the result in a new
@@ -40,7 +33,10 @@ associated activity.  We can now easily use this tidy data set for analysis.
 We use the aggregate function to apply the mean operation to all columns of our
 tidy data set, separately applying this function to each of the 6 activities.
 This results in an output that is 66 columns (corresponding to the 33 mean and
-33 standard deviation features), and 6 rows (corresponding to the 6 activities).  
+33 standard deviation features), and 6 rows (corresponding to the 6 activities). 
+Each data point tells us the mean value of the corresponding feature (column name)
+across all observations of the specified activity (row name) in the data set.
 
 We use the write.table function to write this output to a file called *tidy.txt* 
 for submission.
+
