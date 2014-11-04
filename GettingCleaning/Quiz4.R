@@ -44,3 +44,24 @@ fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Count
 download.file(fileUrl, destfile="education.csv", method="curl")
 dateDownloadedEducation <- date
 education <- read.csv("education.csv")
+
+merged <- merge(gdp,education,by.x="X",by.y="CountryCode")
+notes <- merged$Special.Notes
+fiscal <- grep("[Ff]iscal",notes,value=TRUE)
+june <- grep("June",fiscal,value=TRUE)
+length(june)
+
+
+### Question 5 ###
+
+library(quantmod)
+amzn = getSymbols("AMZN",auto.assign=FALSE)
+sampleTimes = index(amzn)
+
+# Finding all dates in 2012
+all2012 <- as.Date(grep(2012,sampleTimes,value=TRUE))
+length(all2012)
+
+# Finding Mondays in 2012
+days <- grep("Monday",weekdays(all2012),value=TRUE)
+length(days)
