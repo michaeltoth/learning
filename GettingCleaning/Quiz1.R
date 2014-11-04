@@ -55,3 +55,11 @@ library(data.table)
 
 data <- read.csv("IdahoHousing2.csv")
 DT <- data.table(data)
+
+# Iteratively test the timing for each valid expression
+ptm <- proc.time()
+for (i in 1:1000) {
+    mean(DT[DT$SEX==1,]$pwgtp15); 
+}
+
+proc.time() - ptm
