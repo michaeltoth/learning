@@ -16,71 +16,71 @@ We use the write.table function to write this output to a file called tidy.txt f
 
 Individual Column Name Descriptions as Below:
 
-"Group.1"                     Activity name  
-"tBodyAcc-mean()-X"           Average of tBodyAcc-mean()-X by activity  
-"tBodyAcc-mean()-Y"           Average of tBodyAcc-mean()-Y by activity  
-"tBodyAcc-mean()-Z"           Average of tBodyAcc-mean()-Z by activity  
-"tBodyAcc-std()-X"            Average of tBodyAcc-std()-X by activity  
-"tBodyAcc-std()-Y"            Average of tBodyAcc-std()-Y by activity  
-"tBodyAcc-std()-Z"            Average of tBodyAcc-std()-Z by activity  
-"tGravityAcc-mean()-X"        Average of tGravityAcc-mean()-X by activity  
-"tGravityAcc-mean()-Y"        Average of tGravityAcc-mean()-Y by activity  
-"tGravityAcc-mean()-Z"        Average of tGravityAcc-mean()-Z by activity  
-"tGravityAcc-std()-X"         Average of tGravityAcc-std()-X by activity  
-"tGravityAcc-std()-Y"         Average of tGravityAcc-std()-Y by activity  
-"tGravityAcc-std()-Z"         Average of tGravityAcc-std()-Z by activity  
-"tBodyAccJerk-mean()-X"       Average of tBodyAccJerk-mean()-X by activity  
-"tBodyAccJerk-mean()-Y"       Average of tBodyAccJerk-mean()-Y by activity  
-"tBodyAccJerk-mean()-Z"       Average of tBodyAccJerk-mean()-Z by activity  
-"tBodyAccJerk-std()-X"        Average of tBodyAccJerk-std()-X by activity  
-"tBodyAccJerk-std()-Y"        Average of tBodyAccJerk-std()-Y by activity  
-"tBodyAccJerk-std()-Z"        Average of tBodyAccJerk-std()-Z by activity  
-"tBodyGyro-mean()-X"          Average of tBodyGyro-mean()-X by activity  
-"tBodyGyro-mean()-Y"          Average of tBodyGyro-mean()-Y by activity  
-"tBodyGyro-mean()-Z"          Average of tBodyGyro-mean()-Z by activity  
-"tBodyGyro-std()-X"           Average of tBodyGyro-std()-X by activity  
-"tBodyGyro-std()-Y"           Average of tBodyGyro-std()-Y by activity  
-"tBodyGyro-std()-Z"           Average of tBodyGyro-std()-Z by activity  
-"tBodyGyroJerk-mean()-X"      Average of tBodyGyroJerk-mean()-X by activity  
-"tBodyGyroJerk-mean()-Y"      Average of tBodyGyroJerk-mean()-Y by activity  
-"tBodyGyroJerk-mean()-Z"      Average of tBodyGyroJerk-mean()-Z by activity  
-"tBodyGyroJerk-std()-X"       Average of tBodyGyroJerk-std()-X by activity  
-"tBodyGyroJerk-std()-Y"       Average of tBodyGyroJerk-std()-Y by activity  
-"tBodyGyroJerk-std()-Z"       Average of tBodyGyroJerk-std()-Z by activity  
-"tBodyAccMag-mean()"          Average of tBodyAccMag-mean() by activity  
-"tBodyAccMag-std()"           Average of tBodyAccMag-std() by activity  
-"tGravityAccMag-mean()"       Average of tGravityAccMag-mean() by activity  
-"tGravityAccMag-std()"        Average of tGravityAccMag-std() by activity  
-"tBodyAccJerkMag-mean()"      Average of tBodyAccJerkMag-mean() by activity  
-"tBodyAccJerkMag-std()"       Average of tBodyAccJerkMag-std() by activity  
-"tBodyGyroMag-mean()"         Average of tBodyGyroMag-mean() by activity  
-"tBodyGyroMag-std()"          Average of tBodyGyroMag-std() by activity  
-"tBodyGyroJerkMag-mean()"     Average of tBodyGyroJerkMag-mean() by activity  
-"tBodyGyroJerkMag-std()"      Average of tBodyGyroJerkMag-std() by activity  
-"fBodyAcc-mean()-X"           Average of fBodyAcc-mean()-X by activity  
-"fBodyAcc-mean()-Y"           Average of fBodyAcc-mean()-Y by activity  
-"fBodyAcc-mean()-Z"           Average of fBodyAcc-mean()-Z by activity  
-"fBodyAcc-std()-X"            Average of fBodyAcc-std()-X by activity  
-"fBodyAcc-std()-Y"            Average of fBodyAcc-std()-Y by activity  
-"fBodyAcc-std()-Z"            Average of fBodyAcc-std()-Z by activity  
-"fBodyAccJerk-mean()-X"       Average of fBodyAccJerk-mean()-X by activity  
-"fBodyAccJerk-mean()-Y"       Average of fBodyAccJerk-mean()-Y by activity  
-"fBodyAccJerk-mean()-Z"       Average of fBodyAccJerk-mean()-Z by activity  
-"fBodyAccJerk-std()-X"        Average of fBodyAccJerk-std()-X by activity  
-"fBodyAccJerk-std()-Y"        Average of fBodyAccJerk-std()-Y by activity  
-"fBodyAccJerk-std()-Z"        Average of fBodyAccJerk-std()-Z by activity  
-"fBodyGyro-mean()-X"          Average of fBodyGyro-mean()-X by activity  
-"fBodyGyro-mean()-Y"          Average of fBodyGyro-mean()-Y by activity  
-"fBodyGyro-mean()-Z"          Average of fBodyGyro-mean()-Z by activity  
-"fBodyGyro-std()-X"           Average of fBodyGyro-std()-X by activity  
-"fBodyGyro-std()-Y"           Average of fBodyGyro-std()-Y by activity  
-"fBodyGyro-std()-Z"           Average of fBodyGyro-std()-Z by activity  
-"fBodyAccMag-mean()"          Average of fBodyAccMag-mean() by activity  
-"fBodyAccMag-std()"           Average of fBodyAccMag-std() by activity  
-"fBodyBodyAccJerkMag-mean()"  Average of fBodyBodyAccJerkMag-mean() by activity  
-"fBodyBodyAccJerkMag-std()"   Average of fBodyBodyAccJerkMag-std() by activity  
-"fBodyBodyGyroMag-mean()"     Average of fBodyBodyGyroMag-mean() by activity  
-"fBodyBodyGyroMag-std()"      Average of fBodyBodyGyroMag-std() by activity  
-"fBodyBodyGyroJerkMag-mean()" Average of fBodyBodyGyroJerkMag-mean() by activity  
-"fBodyBodyGyroJerkMag-std()"  Average of fBodyBOdyGyroJerkMag-std() by activity  
-
+ [1] "Activity"                                             
+  [2] "Subject"                                              
+   [3] "Time Body Accelerometer Mean -X"                      
+    [4] "Time Body Accelerometer Mean -Y"                      
+     [5] "Time Body Accelerometer Mean -Z"                      
+      [6] "Time Body Accelerometer SD -X"                        
+       [7] "Time Body Accelerometer SD -Y"                        
+        [8] "Time Body Accelerometer SD -Z"                        
+         [9] "Time Gravity Accelerometer Mean -X"                   
+         [10] "Time Gravity Accelerometer Mean -Y"                   
+         [11] "Time Gravity Accelerometer Mean -Z"                   
+         [12] "Time Gravity Accelerometer SD -X"                     
+         [13] "Time Gravity Accelerometer SD -Y"                     
+         [14] "Time Gravity Accelerometer SD -Z"                     
+         [15] "Time Body Accelerometer Jerk Mean -X"                 
+         [16] "Time Body Accelerometer Jerk Mean -Y"                 
+         [17] "Time Body Accelerometer Jerk Mean -Z"                 
+         [18] "Time Body Accelerometer Jerk SD -X"                   
+         [19] "Time Body Accelerometer Jerk SD -Y"                   
+         [20] "Time Body Accelerometer Jerk SD -Z"                   
+         [21] "Time Body Gyroscope Mean -X"                          
+         [22] "Time Body Gyroscope Mean -Y"                          
+         [23] "Time Body Gyroscope Mean -Z"                          
+         [24] "Time Body Gyroscope SD -X"                            
+         [25] "Time Body Gyroscope SD -Y"                            
+         [26] "Time Body Gyroscope SD -Z"                            
+         [27] "Time Body Gyroscope Jerk Mean -X"                     
+         [28] "Time Body Gyroscope Jerk Mean -Y"                     
+         [29] "Time Body Gyroscope Jerk Mean -Z"                     
+         [30] "Time Body Gyroscope Jerk SD -X"                       
+         [31] "Time Body Gyroscope Jerk SD -Y"                       
+         [32] "Time Body Gyroscope Jerk SD -Z"                       
+         [33] "Time Body Accelerometer Magnitude Mean "              
+         [34] "Time Body Accelerometer Magnitude SD "                
+         [35] "Time Gravity Accelerometer Magnitude Mean "           
+         [36] "Time Gravity Accelerometer Magnitude SD "             
+         [37] "Time Body Accelerometer Jerk Magnitude Mean "         
+         [38] "Time Body Accelerometer Jerk Magnitude SD "           
+         [39] "Time Body Gyroscope Magnitude Mean "                  
+         [40] "Time Body Gyroscope Magnitude SD "                    
+         [41] "Time Body Gyroscope Jerk Magnitude Mean "             
+         [42] "Time Body Gyroscope Jerk Magnitude SD "               
+         [43] "Frequency Body Accelerometer Mean -X"                 
+         [44] "Frequency Body Accelerometer Mean -Y"                 
+         [45] "Frequency Body Accelerometer Mean -Z"                 
+         [46] "Frequency Body Accelerometer SD -X"                   
+         [47] "Frequency Body Accelerometer SD -Y"                   
+         [48] "Frequency Body Accelerometer SD -Z"                   
+         [49] "Frequency Body Accelerometer Jerk Mean -X"            
+         [50] "Frequency Body Accelerometer Jerk Mean -Y"            
+         [51] "Frequency Body Accelerometer Jerk Mean -Z"            
+         [52] "Frequency Body Accelerometer Jerk SD -X"              
+         [53] "Frequency Body Accelerometer Jerk SD -Y"              
+         [54] "Frequency Body Accelerometer Jerk SD -Z"              
+         [55] "Frequency Body Gyroscope Mean -X"                     
+         [56] "Frequency Body Gyroscope Mean -Y"                     
+         [57] "Frequency Body Gyroscope Mean -Z"                     
+         [58] "Frequency Body Gyroscope SD -X"                       
+         [59] "Frequency Body Gyroscope SD -Y"                       
+         [60] "Frequency Body Gyroscope SD -Z"                       
+         [61] "Frequency Body Accelerometer Magnitude Mean "         
+         [62] "Frequency Body Accelerometer Magnitude SD "           
+         [63] "Frequency BodyBody Accelerometer Jerk Magnitude Mean "
+         [64] "Frequency BodyBody Accelerometer Jerk Magnitude SD "  
+         [65] "Frequency BodyBody Gyroscope Magnitude Mean "         
+         [66] "Frequency BodyBody Gyroscope Magnitude SD "           
+         [67] "Frequency BodyBody Gyroscope Jerk Magnitude Mean "    
+         [68] "Frequency BodyBody Gyroscope Jerk Magnitude SD "

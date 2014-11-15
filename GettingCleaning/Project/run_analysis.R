@@ -43,4 +43,14 @@ output <- aggregate(mergedData[,2:67],
             mean)
 colnames(output)[1:2] <- c("Activity","Subject")
 
+# Add descriptive labels to dataset:
+colnames(output) <- sub("^t", "Time ", colnames(output))
+colnames(output) <- sub("^f", "Frequency ", colnames(output))
+colnames(output) <- sub("Gyro", " Gyroscope ", colnames(output))
+colnames(output) <- sub("Acc", " Accelerometer ", colnames(output))
+colnames(output) <- sub("-mean\\(\\)", "Mean ", colnames(output))
+colnames(output) <- sub("-std\\(\\)", "SD ", colnames(output))
+colnames(output) <- sub("Jerk", "Jerk ", colnames(output))
+colnames(output) <- sub("Mag", "Magnitude ", colnames(output))
+
 write.table(output, file = "tidy.txt", row.names=FALSE)
