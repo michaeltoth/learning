@@ -1,4 +1,4 @@
-####Project Codebook
+##Project Codebook
 
 We begin with 8 raw raw files from the UCI HAR Dataset, *X_test.txt*, *X_train.txt*, *y_test.txt*, *y_train.txt*, *subject_test.txt*, *subject_train.txt*, *features.txt*, and *activity_labels.txt*.
 
@@ -18,7 +18,7 @@ We use the write.table function to write this output to a file called tidy.txt f
 
 Individual Column Name Descriptions as Below:
 
-| ####Column Header                                      | ####Description of Column               |
+| Column Header                                          | Description of Column                   |
 | -------------------------------------------------------| ----------------------------------------|
 | "Activity"                                             | Activity Performed                      |
 | "Subject"                                              | Subject in Study                        |
