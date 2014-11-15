@@ -17,3 +17,11 @@ if (!file.exists(file1) | !file.exists(file2)) {
 # Read files into R using readRDS.  This may take a minute or two
 if (!exists("NEI")) { NEI <- readRDS("data/summarySCC_PM25.rds") }
 if (!exists("SCC")) { SCC <- readRDS("data/Source_Classification_Code.rds") }
+
+# Sum total emissions by year from all sources
+totalEmissions <- aggregate(NEI$Emissions, by = list(NEI$year), sum)
+colnames(totalEmissions) <- c("Year", "Emissions")
+
+plot(x = totalEmissions$Year, y = totalEmissions$Emissions, xlim = c(1998,2008), 
+     ylim = c(3500000,7500000), main = "Total Yearly Emissions", 
+     ylab = expression("PM"[2.5]*" Emissions"), xlab = "Year")
