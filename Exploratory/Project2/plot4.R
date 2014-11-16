@@ -27,7 +27,7 @@ if (!exists("SCC")) { SCC <- readRDS("data/Source_Classification_Code.rds") }
 SCC_Coal <- SCC[grep("Coal", SCC$Short.Name),]
 NEI_Coal <- NEI[NEI$SCC %in% SCC_Coal$SCC,]
 
-# Sum total emissions by year from all sources
+# Sum total emissions by year from coal sources
 coalEmissions <- aggregate(Emissions ~ year, data = NEI_Coal, sum)
 
 ggplot(data = coalEmissions, aes(year, Emissions)) + geom_line()
