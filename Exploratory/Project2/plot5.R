@@ -20,3 +20,20 @@ if (!exists("SCC")) { SCC <- readRDS("data/Source_Classification_Code.rds") }
 
 # Subset Baltimore NEI Data
 NEI_Baltimore <- NEI[NEI$fips == "24510",]
+
+# After some exploration, I found that both grep("Vehicle", SCC$Short.Name)
+# returns many non-vehicle sources that have "vehicle" in the name, so those are
+# exluded.  Similar results for the SCC.Level.Four variable.  Using SCC.Level.Two
+# and SCC.Level.Three seems to get at the sources we want.
+
+# Extract only those observations from motor vehicle sources
+SCC_Vehicles <- SCC[union(grep("Vehicle", SCC$SCC.Level.Two),
+                          grep("Vehicle", SCC$SCC.Level.Three)),]
+NEI_Baltimore_Vehicles <- NEI_Baltimore[NEI_Baltimore$SCC %in% SCC_Vehicles$SCC,]
+
+# Sum Baltimore emissions by year from motor vehicle sources
+baltimoreVehicleEmissions <- aggregate(Emissions ~ year, 
+                                       data = NEI_Baltimore_Vehicles, sum)
+
+ggplot(data = baltimoreVehicleEmissions, aes(year, Emissions)) + geom_line()
+
