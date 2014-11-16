@@ -19,9 +19,8 @@ if (!exists("NEI")) { NEI <- readRDS("data/summarySCC_PM25.rds") }
 if (!exists("SCC")) { SCC <- readRDS("data/Source_Classification_Code.rds") }
 
 # Sum total emissions by year from all sources
-totalEmissions <- aggregate(NEI$Emissions, by = list(NEI$year), sum)
-colnames(totalEmissions) <- c("Year", "Emissions")
+totalEmissions <- aggregate(Emissions ~ year, data = NEI, sum)
 
-plot(x = totalEmissions$Year, y = totalEmissions$Emissions, xlim = c(1998,2008), 
+plot(x = totalEmissions$year, y = totalEmissions$Emissions, xlim = c(1998,2008), 
      ylim = c(3500000,7500000), main = "Total Yearly Emissions", 
      ylab = expression("PM"[2.5]*" Emissions"), xlab = "Year")
