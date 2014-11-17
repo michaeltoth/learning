@@ -21,6 +21,11 @@ if (!exists("SCC")) { SCC <- readRDS("data/Source_Classification_Code.rds") }
 # Sum total emissions by year from all sources
 totalEmissions <- aggregate(Emissions ~ year, data = NEI, sum)
 
-plot(x = totalEmissions$year, y = totalEmissions$Emissions, xlim = c(1998,2008), 
-     ylim = c(3500000,7500000), main = "Total Yearly Emissions", 
-     ylab = expression("PM"[2.5]*" Emissions"), xlab = "Year")
+# Set plot parameters
+par(las = 1, family = "Helvetica", cex.axis = 0.8)
+
+# Plot, converting values to millions to avoid scientific notation in plot image
+barplot(totalEmissions$Emissions/1000000, names.arg = totalEmissions$year,
+        main = "U.S. - Total Emissions from All Sources", xlab = "Year",
+        ylab = expression("PM"[2.5]*" Emissions in Millions"), col = "skyblue",
+        ylim = c(0,8))
