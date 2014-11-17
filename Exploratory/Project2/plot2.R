@@ -27,3 +27,11 @@ baltimoreEmissions <- aggregate(Emissions ~ year, data = NEI_Baltimore, sum)
 plot(x = baltimoreEmissions$year, y = baltimoreEmissions$Emissions,
      xlim = c(1998,2008), main = "Baltimore Yearly Emissions", 
      ylab = expression("PM"[2.5]*" Emissions"), xlab = "Year")
+
+# Set plot parameters
+par(las = 1, family = "Helvetica", cex.axis = 0.8)
+
+# Plot, converting values to millions to avoid scientific notation in plot image
+barplot(baltimoreEmissions$Emissions, names.arg = baltimoreEmissions$year,
+        main = "Baltimore - Total Emissions from All Sources", xlab = "Year",
+        ylab = expression("PM"[2.5]*" Emissions"), col = "skyblue", ylim = c(0,3500))
