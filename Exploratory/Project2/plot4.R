@@ -30,5 +30,7 @@ NEI_Coal <- NEI[NEI$SCC %in% SCC_Coal$SCC,]
 # Sum total emissions by year from coal sources
 coalEmissions <- aggregate(Emissions ~ year, data = NEI_Coal, sum)
 
-ggplot(data = coalEmissions, aes(year, Emissions)) + geom_line()
-
+barplot(coalEmissions$Emissions/1000, names.arg = coalEmissions$year,
+        main = "U.S. - Emissions from Coal Sources", xlab = "Year",
+        ylab = expression("PM"[2.5]*" Emissions in Thousands"), col = "skyblue",
+        ylim=c(0,600))
