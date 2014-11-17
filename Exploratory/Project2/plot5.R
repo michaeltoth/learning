@@ -35,5 +35,7 @@ NEI_Baltimore_Vehicles <- NEI_Baltimore[NEI_Baltimore$SCC %in% SCC_Vehicles$SCC,
 baltimoreVehicleEmissions <- aggregate(Emissions ~ year, 
                                        data = NEI_Baltimore_Vehicles, sum)
 
-ggplot(data = baltimoreVehicleEmissions, aes(year, Emissions)) + geom_line()
-
+barplot(baltimoreVehicleEmissions$Emissions, col = "skyblue", xlab = "Year",
+        names.arg = baltimoreVehicleEmissions$year,
+        main = "Baltimore - Emissions from Motor Vehicle Sources", 
+        ylab = expression("PM"[2.5]*" Emissions"))
