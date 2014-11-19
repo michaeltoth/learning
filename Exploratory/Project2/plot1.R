@@ -24,8 +24,14 @@ totalEmissions <- aggregate(Emissions ~ year, data = NEI, sum)
 # Set plot parameters
 par(las = 1, family = "Helvetica", cex.axis = 0.8)
 
+# Set graphics device to png
+png(filename = "plot1.png")
+
 # Plot, converting values to millions to avoid scientific notation in plot image
 barplot(totalEmissions$Emissions/1000000, names.arg = totalEmissions$year,
         main = "U.S. - Total Emissions from All Sources", xlab = "Year",
         ylab = expression("PM"[2.5]*" Emissions in Millions"), col = "skyblue",
         ylim = c(0,8))
+
+# Turn off png graphics device
+dev.off()
