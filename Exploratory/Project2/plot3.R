@@ -33,4 +33,4 @@ ggplot(data = baltimoreEmissionsType, aes(as.factor(year), Emissions)) +
     theme(plot.title = element_text(lineheight=.8, face="bold"))
     
 # Save to .png file
-ggsave(filename = "plot3.png", width = 8, height = 8)
+ggsave(filename = "plot3.png", width = 8, height = 6, dpi = 100)
