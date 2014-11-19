@@ -35,7 +35,14 @@ NEI_Baltimore_Vehicles <- NEI_Baltimore[NEI_Baltimore$SCC %in% SCC_Vehicles$SCC,
 baltimoreVehicleEmissions <- aggregate(Emissions ~ year, 
                                        data = NEI_Baltimore_Vehicles, sum)
 
+# Set graphics device to png
+png(filename = "plot5.png")
+
+# Create barplot of emissions from motor vehicles in Baltimore
 barplot(baltimoreVehicleEmissions$Emissions, col = "skyblue", xlab = "Year",
         names.arg = baltimoreVehicleEmissions$year,
         main = "Baltimore - Emissions from Motor Vehicle Sources", 
         ylab = expression("PM"[2.5]*" Emissions"))
+
+# Turn off png graphics device
+dev.off()
