@@ -25,10 +25,12 @@ NEI_Baltimore <- NEI[NEI$fips == "24510",]
 baltimoreEmissionsType <- aggregate(Emissions ~ year+type, 
                                     data = NEI_Baltimore, sum)
 
-
+# Create plot of emissions by type using facet grid in ggplot
 ggplot(data = baltimoreEmissionsType, aes(as.factor(year), Emissions)) + 
     geom_bar(stat="identity") + facet_grid(. ~ type) + xlab("Year") + 
     ylab(expression("PM"[2.5]*" Emissions")) + 
     ggtitle("Baltimore - Emissions by Source Type") + 
     theme(plot.title = element_text(lineheight=.8, face="bold"))
     
+# Save to .png file
+ggsave(filename = "plot3.png", width = 8, height = 8)
