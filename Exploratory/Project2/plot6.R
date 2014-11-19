@@ -19,7 +19,7 @@ if (!exists("NEI")) { NEI <- readRDS("data/summarySCC_PM25.rds") }
 if (!exists("SCC")) { SCC <- readRDS("data/Source_Classification_Code.rds") }
 
 # Subset Baltimore NEI Data
-NEI_Baltimore <- NEI[NEI$fips == "24510"],
+NEI_Baltimore <- NEI[NEI$fips == "24510",]
 NEI_LA <- NEI[NEI$fips == "06037",]
 
 # After some exploration, I found that both grep("Vehicle", SCC$Short.Name)
@@ -41,8 +41,12 @@ LAVehicleEmissions <- aggregate(Emissions ~ year, data = NEI_LA_Vehicles, sum)
 cityEmissions <- rbind(baltimoreVehicleEmissions, LAVehicleEmissions)
 cityEmissions$city <- rep(c("Baltimore","LA"), each=4)
 
+# Create plot of motor vehicle emissions by city using facet grid in ggplot
 ggplot(data = cityEmissions, aes(as.factor(year), Emissions)) + 
     geom_bar(stat="identity") + facet_grid(. ~ city) + xlab("Year") + 
     ylab(expression("PM"[2.5]*" Emissions")) + 
     ggtitle("Motor Vehicle Emissions by City") + 
     theme(plot.title = element_text(lineheight=.8, face="bold"))
+
+# Save to .png file
+ggsave(filename = "plot6.png", width = 6, height = 8)
