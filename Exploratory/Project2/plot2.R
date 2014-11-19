@@ -24,14 +24,16 @@ NEI_Baltimore <- NEI[NEI$fips == "24510",]
 # Sum total emissions by year from all sources
 baltimoreEmissions <- aggregate(Emissions ~ year, data = NEI_Baltimore, sum)
 
-plot(x = baltimoreEmissions$year, y = baltimoreEmissions$Emissions,
-     xlim = c(1998,2008), main = "Baltimore Yearly Emissions", 
-     ylab = expression("PM"[2.5]*" Emissions"), xlab = "Year")
-
 # Set plot parameters
 par(las = 1, family = "Helvetica", cex.axis = 0.8)
 
-# Plot, converting values to millions to avoid scientific notation in plot image
+# Set graphics device to png
+png(filename = "plot2.png")
+
+# Create barplot of Baltimore emissions
 barplot(baltimoreEmissions$Emissions, names.arg = baltimoreEmissions$year,
         main = "Baltimore - Total Emissions from All Sources", xlab = "Year",
         ylab = expression("PM"[2.5]*" Emissions"), col = "skyblue", ylim = c(0,3500))
+
+# Turn off png graphics device
+dev.off()
