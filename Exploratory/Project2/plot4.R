@@ -30,7 +30,14 @@ NEI_Coal <- NEI[NEI$SCC %in% SCC_Coal$SCC,]
 # Sum total emissions by year from coal sources
 coalEmissions <- aggregate(Emissions ~ year, data = NEI_Coal, sum)
 
+# Set graphics device to png
+png(filename = "plot4.png")
+
+# Create barplot, dividing by 1000 to avoid scientific notation in plot
 barplot(coalEmissions$Emissions/1000, names.arg = coalEmissions$year,
         main = "U.S. - Emissions from Coal Sources", xlab = "Year",
         ylab = expression("PM"[2.5]*" Emissions in Thousands"), col = "skyblue",
         ylim=c(0,600))
+
+# Turn off png graphics device
+dev.off()
