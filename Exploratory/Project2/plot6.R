@@ -49,4 +49,4 @@ ggplot(data = cityEmissions, aes(as.factor(year), Emissions)) +
     theme(plot.title = element_text(lineheight=.8, face="bold"))
 
 # Save to .png file
-ggsave(filename = "plot6.png", width = 6, height = 8)
+ggsave(filename = "plot6.png", width = 6, height = 6, dpi = 100)
