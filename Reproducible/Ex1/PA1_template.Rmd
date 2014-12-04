@@ -1,0 +1,46 @@
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
+## Michael Toth
+
+## Loading and preprocessing the data:
+
+```{r}
+unzip(zipfile = "activity.zip")
+activity <- read.csv(file = "activity.csv", header = TRUE)
+```
+
+
+## What is mean total number of steps taken per day?
+```{r}
+library(ggplot2)
+qplot(steps, data = activity, geom = "histogram")
+median(activity$steps, na.rm = TRUE)
+mean(activity$steps, na.rm = TRUE)
+```
+
+
+## What is the average daily activity pattern?
+
+```{r}
+periodicActivity <- aggregate(activity$steps, by = list(activity$interval), 
+                              FUN = mean, na.rm = TRUE)
+names(periodicActivity) <- c("Interval","AverageDailySteps")
+qplot(x = Period, y = AverageDailySteps, data = periodicActivity, geom = "line")
+
+library(dplyr)
+max <- periodicActivity %>%
+           arrange(desc(AverageDailySteps)) %>%
+           slice(1)
+max$Period
+```
+
+
+## Imputing missing values
+
+
+
+## Are there differences in activity patterns between weekdays and weekends?
