@@ -10,7 +10,9 @@
 # Shapefile associated extensions (geographic plotting)
 *.dbf
 *.prj
+*.cpg
 *.shp
+*.shx
 
 __MACOSX
 
