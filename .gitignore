@@ -2,9 +2,15 @@
 #####              General              #####
 #############################################
 
-# .csv and .zip files which can be very large
+# .csv .xml and .zip files which can be very large
 *.csv
+*.xml
 *.zip
+
+# Shapefile associated extensions (geographic plotting)
+*.dbf
+*.prj
+*.shp
 
 __MACOSX
 
