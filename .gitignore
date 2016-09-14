@@ -14,7 +14,9 @@
 *.shp
 *.shx
 
+# Random Mac Stuff
 __MACOSX
+.DS_Store
 
 
 #############################################
